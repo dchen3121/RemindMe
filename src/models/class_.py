@@ -1,4 +1,3 @@
-import datetime
 import uuid
 
 from src.common.database import Database
@@ -7,10 +6,11 @@ from src.models.note import Note
 
 class Class(object):
 
-    def __init__(self, title, description, active, _id=None):
+    def __init__(self, title, description, active, user_id, _id=None):
         self.title = title
         self.description = description
         self.active = active # Can be one of two values: "active" / "inactive"
+        self.user_id = user_id
         self._id = uuid.uuid4().hex if _id is None else _id
         # this is the id for the class
 
@@ -21,6 +21,7 @@ class Class(object):
             'title':self.get_title(),
             'description':self.get_description(),
             'active':self.get_active(),
+            'user_id':self.get_user_id(),
             '_id':self.get_id()
         }
     def save_class_to_mongo(self):
@@ -34,11 +35,12 @@ class Class(object):
     def get_class_by_id(cls, id):
         class_ = Database.find_one(collection='classes',
                                    query={'_id':id})
-        return Class(**class_)
+        return cls(**class_)
     @classmethod
-    def get_active_classes(cls, id):
+    def get_active_classes(cls):
         classes = Database.find(collection='classes',
                                 query={'active':'active'})
+        return [cls(**class_) for class_ in classes]
 
 
 
@@ -74,6 +76,9 @@ class Class(object):
     def get_active(self):
         return self.active
 
+    def get_user_id(self):
+        return self.user_id
+
     def get_id(self):
         return self._id
 
@@ -86,6 +91,9 @@ class Class(object):
 
     def set_active(self, new_active):
         self.active = new_active
+
+    def set_user_id(self, new_user_id):
+        self.user_id = new_user_id
 
     def set_id(self, new__id):
         self._id = new__id
