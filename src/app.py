@@ -110,4 +110,4 @@ def create_new_note(class_id):
 
 # requirement to run our app
 if __name__ == '__main__':
-    app.run(port=4999)
+    app.run(port=4995, debug=True)
