@@ -5,14 +5,18 @@ from src.models.note import Note
 from src.models.class_ import Class
 from src.models.user import User
 
+
+
 app = Flask(__name__)  # '__main__'
 # secret key: to make sure the data we send in the form of a cookie is secure
 app.secret_key = "dchen"
 
 
+
 @app.before_first_request
 def initialize_database():
     Database.initialize()
+
 
 
 @app.route('/')
@@ -21,14 +25,24 @@ def home_template():
     return render_template('home.html')
 
 
+
 @app.route('/login')
 def login_template():
     return render_template('login.html')
 
 
+
+@app.route('/logout', methods=['POST'])
+def logout_template():
+    session['username'] = None
+    return render_template('logout.html')
+
+
+
 @app.route('/register')
 def register_template():
     return render_template('register.html')
+
 
 
 @app.route('/auth/login', methods=['POST'])
@@ -43,12 +57,14 @@ def login_verification():
         return render_template('login.html')
 
 
+
 @app.route('/auth/register', methods=['POST'])
 def register_user():
     username = request.form['username']
     password = request.form['password']
     User.signup_with_username(username, password)
     return render_template('login_welcome.html', username=session['username'], text="registered")
+
 
 
 @app.route('/home', methods=['POST', 'GET'])  # basically list of classes
@@ -63,23 +79,26 @@ def homescreen_template():
     return render_template('homescreen.html', classes=classes, username=session['username'])
 
 
+
 @app.route('/home/newsubject')  # creating new subject
 def create_new_subject():
     return render_template('createsubject.html', username=session['username'])
 
 
-@app.route('/home/subject/<string:class_id>', methods=['POST'])
+
+@app.route('/home/subject/<string:class_id>', methods=['POST', 'GET'])
 def subject_template(class_id):
     subject = Class.get_class_by_id(class_id)
     if request.method == 'POST':
         title = request.form['title']
-        content = request.form['description']
+        content = request.form['content']
         date = request.form['date']
         due_date = request.form['due-date']
         new_note = Note(title, content, due_date, class_id, date)
         new_note.save_note_to_mongo()
     notes = subject.get_notes_from_class()
-    return render_template('view_subject.html', notes=notes, username=session['username'], subject=class_id)
+    return render_template('view_subject.html', notes=notes, username=session['username'], subject=subject)
+
 
 
 

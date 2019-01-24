@@ -1,20 +1,23 @@
 {% extends "home_base.html" %}
 {% block content %}
-<div class="container-fluid btn-group" role="group" style="margin-bottom:100px;">
-    <form id="createnote" action="/home/subject/newnote/{{ subject }}" style="margin-right:15px;">
+<div class="container-fluid btn-group" role="group" style="margin-bottom:50px;">
+    <form id="createnote" action="/home/subject/newnote/{{ subject._id }}" style="margin-right:15px;">
         <button type="submit" class="btn btn-outline-secondary"> + Create a new note</button>
     </form>
-    <form id="editsubject" action="/home/subject/editsubject/{{ subject }}" style="margin-right:15px;">
+    <form id="editsubject" action="/home/subject/editsubject/{{ subject._id }}" style="margin-right:15px;">
         <button type="submit" class="btn btn-outline-secondary">Edit this subject</button> <!--TODO-->
     </form>
     <form id="back2subject" action="/home" style="margin-right:15px;">
         <button type="submit" class="btn btn-outline-secondary">Back to home</button>
     </form>
 </div>
+<div class="container" style="margin-bottom:30px;">
+    <h1>{{ subject.title }}</h1>
+</div>
 <div class="container" >
     {% if notes|length > 0 %}
         {% for note in notes %}
-            <div class="card" style="width: 18rem;" float="left">
+            <div class="card" style="float:left;width:32%;height:320px;margin-bottom:16px;margin-left:1.2%;background-color:#EEE;">
                 <a href="/home/subject/note/{{ note._id }}" style="color:black;text-decoration:none;">
                     <div class="card-body">
                         <h5 class="card-title">{{ note.title }}</h5>

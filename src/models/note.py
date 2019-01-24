@@ -17,6 +17,7 @@ class Note(object):
 
 
 
+
     # saving to database methods
     def json(self):
         """Returns a json representation of the Note object"""
@@ -32,6 +33,7 @@ class Note(object):
         """Saves the Note object into the database's 'notes' collection"""
         Database.insert(collection='notes',
                         data=self.json())
+
 
 
 
@@ -57,11 +59,13 @@ class Note(object):
 
 
 
+
     # deleting Note from database methods
     def delete_note(self):
         """Removes the note from the database"""
         Database.remove(collection='notes',
                         query={'_id':self.get_id()})
+
 
 
 
