@@ -49,7 +49,7 @@ class Class(object):
         """Returns a list of Notes made for this Class"""
         notes = Database.find(collection='notes',
                               query={'class_id': self.get_id()})
-        return [Note(note) for note in notes]
+        return [Note(**note) for note in notes]
 
 
 

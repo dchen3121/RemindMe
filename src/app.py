@@ -17,5 +17,19 @@ def initialize_database():
 
 
 @app.route('/')
-def home():
-    render_template('home.html')
+def home_template():
+    return render_template('home.html')
+
+@app.route('/login')
+def login_template():
+    return render_template('login.html')
+
+@app.route('/register')
+def register_template():
+    return render_template('register.html')
+
+
+
+# requirement to run our app
+if __name__ == '__main__':
+    app.run(port=4999)
