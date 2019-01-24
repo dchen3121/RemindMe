@@ -68,11 +68,25 @@ def create_new_subject():
     return render_template('createsubject.html', username=session['username'])
 
 
-@app.route('/home/subject/<string:class_id>')
+@app.route('/home/subject/<string:class_id>', methods=['POST'])
 def subject_template(class_id):
     subject = Class.get_class_by_id(class_id)
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['description']
+        date = request.form['date']
+        due_date = request.form['due-date']
+        new_note = Note(title, content, due_date, class_id, date)
+        new_note.save_note_to_mongo()
     notes = subject.get_notes_from_class()
-    return render_template('view_subject.html', notes=notes, username=session['username'])
+    return render_template('view_subject.html', notes=notes, username=session['username'], subject=class_id)
+
+
+
+@app.route('/home/subject/newnote/<string:class_id>')  # creating new note inside a class
+def create_new_note(class_id):
+    return render_template('createnote.html', username=session['username'], subject=class_id)
+
 
 
 # requirement to run our app

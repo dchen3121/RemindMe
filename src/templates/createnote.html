@@ -1,0 +1,27 @@
+{% extends "auth_base.html" %}
+{% block content %}
+
+<div style="margin-left:12%;margin-right:12%;margin-top:50px;margin-bottom:50px;padding:40px;border:3px solid rgba(200,200,200,0.3);border-radius:80px;background-color:rgb(150,150,160);color:white;">
+    <h1 style="text-align:center;font:Trebuchet MS;font-size:18pt;">New Note</h1>
+    <hr>
+    <form id="new-note-form" action="/home/subject/{{ subject }}" method="post">
+        <div class="form-group">
+            <label for="title" style="font-size:14pt;">Title</label>
+            <input type="text" id="title" name="title" style="width:100%"/>
+        </div>
+        <div class="form-group">
+            <label for="date" style="font-size:14pt;">Date Assigned</label>
+            <input type="date" id="date" name="date" style="width:100%"/>
+        </div>
+        <div class="form-group">
+            <label for="due-date" style="font-size:14pt;">Due Date</label>
+            <input type="date" id="due-date" name="due-date" style="width:100%"/>
+        </div>
+        <div class="form-group">
+            <label for="content" style="font-size:14pt;">Content</label>
+            <textarea id="content" class="form-control" name="content" rows="3" maxlength="250"></textarea>
+        </div>
+        <button type="submit" class="btn btn-secondary">Create new note</button>
+    </form>
+</div>
+{% endblock %}
