@@ -104,7 +104,7 @@ def subject_template(class_id):
 
 @app.route('/home/subject/newnote/<string:class_id>')  # creating new note inside a class
 def create_new_note(class_id):
-    return render_template('createnote.html', username=session['username'], subject=class_id)
+    return render_template('createnote.html', username=session['username'], subject_id = class_id)
 
 
 

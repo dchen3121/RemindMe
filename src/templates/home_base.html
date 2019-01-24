@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>RemindMe</title>
-
-    <!-- bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -16,16 +14,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
             integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
             crossorigin="anonymous"></script>
-
     <link rel="stylesheet" type="text/css" href="../static/css/home_base.css" />
-
 </head>
 <body style="background-image:url(../static/images/first_bg.jpg);background-size:cover;">
 
 <nav class="navbar navbar-dark bg-dark" style="margin-bottom:15px;">
     <a class="navbar-brand" style="color:#CCCCCC">Hello, {{ username }}.</a>
     <form class="form-inline" action="/logout" method="post">
-        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Log Out</button>
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Log Out</button>
     </form>
 </nav>
 

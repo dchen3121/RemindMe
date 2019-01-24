@@ -64,7 +64,7 @@ class Note(object):
     def delete_note(self):
         """Removes the note from the database"""
         Database.remove(collection='notes',
-                        query={'_id':self.get_id()})
+                        query={'_id': self.get_id()})
 
 
 
