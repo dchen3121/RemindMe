@@ -37,10 +37,17 @@ class Class(object):
                                    query={'_id':id})
         return cls(**class_)
     @classmethod
+    def get_classes_by_user_id(cls, user_id):
+        classes = Database.find(collection='classes',
+                                query={'user_id': user_id})
+        if classes is not None:
+            return [Class(**class_) for class_ in classes]
+    @classmethod
     def get_active_classes(cls):
         classes = Database.find(collection='classes',
                                 query={'active':'active'})
-        return [cls(**class_) for class_ in classes]
+        if classes is not None:
+            return [cls(**class_) for class_ in classes]
 
 
 

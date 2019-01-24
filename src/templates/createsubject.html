@@ -1,0 +1,19 @@
+{% extends "auth_base.html" %}
+{% block content %}
+
+<div style="margin-left:12%;margin-right:12%;margin-top:50px;margin-bottom:50px;padding:40px;border:3px solid rgba(200,200,200,0.3);border-radius:80px;background-color:rgb(150,150,160);color:white;">
+    <h1 style="text-align:center;font:Trebuchet MS;font-size:18pt;">New Subject</h1>
+    <hr>
+    <form id="new-subject-form" action="/home" method="post">
+        <div class="form-group">
+            <label for="title" style="font-size:14pt;">Title</label>
+            <input type="text" id="title" name="title" style="width:100%"/>
+        </div>
+        <div class="form-group">
+            <label for="description" style="font-size:14pt;">Description</label>
+            <textarea id="description" class="form-control" name="description" rows="2" maxlength="150"></textarea>
+        </div>
+        <button type="submit" class="btn btn-secondary">Create new subject</button>
+    </form>
+</div>
+{% endblock %}

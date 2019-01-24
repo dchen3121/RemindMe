@@ -20,9 +20,19 @@
     <link rel="stylesheet" type="text/css" href="../static/css/home_base.css" />
 
 </head>
-<body>
+<body style="background-image:url(../static/images/first_bg.jpg);background-size:50%;">
+
+<nav class="navbar navbar-dark bg-dark" style="margin-bottom:20px;">
+    <a class="navbar-brand" style="color:#CCCCCC">Hello, {{ username }}.</a>
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search for anything" aria-label="Search">
+        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</nav>
+
 {% block content %}
 
 {% endblock %}
+
 </body>
 </html>

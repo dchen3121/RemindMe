@@ -1,0 +1,26 @@
+{% extends "home_base.html" %}
+{% block content %}
+<div class="container-fluid" style="margin-bottom:100px;">
+    <form id="createsubject" action="/home/newsubject">
+        <button type="submit" class="btn btn-outline-secondary">Edit this subject</button>
+    </form>
+</div>
+<div class="container" >
+    {% if notes|length > 0 %}
+        {% for note in notes %}
+            <div class="card" style="width: 18rem;" float="left">
+                <a href="/home/subject/note/{{ note._id }}" style="color:black;text-decoration:none;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ note.title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Due Date: {{ note.due_date }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Date Entered: {{ note.date }}</h6>
+                        <p class="card-text">{{ note.content }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h4 style="color:#999;">You have yet to create any notes ... </h4>
+    {% endif %}
+</div>
+{% endblock %}

@@ -3,11 +3,11 @@
 <div style="width:350px;height:250px;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);padding:40px;border:3px solid rgba(200,200,200,0.3);border-radius:80px;background-color:rgb(150,150,160);color:white;">
     <h1 style="text-align:center;font:Trebuchet MS;text-decoration:bold;">RemindMe!</h1>
     <hr>
-    <div class="text-center">
+    <form class="text-center" action="/login">
         <button id="login" name="login" type="submit" class="btn btn-secondary" style="width:100px;margin-bottom:12px;">Log In</button>
-    </div>
-    <div class="text-center">
+    </form>
+    <form class="text-center" action="/register">
         <button id="signup" name="signup" type="submit" class="btn btn-secondary" style="width:100px;;">Sign Up</button>
-    </div>
+    </form>
 </div>
 {% endblock %}
