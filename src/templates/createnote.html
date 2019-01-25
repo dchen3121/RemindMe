@@ -1,9 +1,9 @@
 {% extends "auth_base.html" %}
 {% block content %}
-<div style="margin-top:30px;margin-bottom:30px;margin-left:12%;margin-right:12%;padding:40px;border:3px solid rgba(200,200,200,0.3);border-radius:80px;background-color:rgb(150,150,160);color:white;">
+<div style="margin-top:30px;margin-bottom:30px;padding:40px;border:3px solid rgba(200,200,200,0.3);border-radius:80px;background-color:rgb(150,150,160);color:white;">
     <h1 style="text-align:center;font:Trebuchet MS;font-size:18pt;">New Note</h1>
     <hr>
-    <form id="new-note-form" action="/home/subject/{{ subject_id }}" method="post">
+    <form id="new-note-form" action="/auth/new_note/{{ subject_id }}" method="post">
         <div class="form-group">
             <label for="title" style="font-size:14pt;">Title</label>
             <input type="text" id="title" name="title" style="width:100%"/>

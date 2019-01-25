@@ -1,25 +1,29 @@
 {% extends "home_base.html" %}
 {% block content %}
-<div class="container-fluid" style="margin-bottom:100px;">
+<div class="container-fluid" style="margin-bottom:60px;">
     <form id="createsubject" action="/home/newsubject">
         <button type="submit" class="btn btn-outline-light"> + Create a new subject</button>
     </form>
 </div>
-<div class="container">
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
     {% if classes|length > 0 %}
         {% for class in classes %}
             <div class="card card-subject">
-                <a href="/home/subject/{{ class._id }}" style="color:black;text-decoration:none;">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ class.title }}</h5>
-                        <hr>
-                        <p class="card-text">{{ class.description }}</p>
-                    </div>
-                </a>
+                <div class="card-body">
+                    <h5 class="card-title"><a href="/home/subject/{{ class._id }}"
+                                              style="color:black;text-decoration:none;">{{ class.title }}</a></h5>
+                    <hr>
+                    <p class="card-text">{{ class.description }}</p>
+                    <form action="/home/subject/{{ class._id }}/edit">
+                        <button class="btn btn-outline-light btn-small">Edit</button>
+                    </form>
+                </div>
             </div>
         {% endfor %}
     {% else %}
         <h4 style="color:#999;">You have yet to create anything ... </h4>
     {% endif %}
+    </div>
 </div>
 {% endblock %}

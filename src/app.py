@@ -51,7 +51,7 @@ def login_verification():
     password = request.form['password']
     if User.isvalid_login_username(username, password):
         User.login(username)
-        return render_template('login_welcome.html', username=session['username'], text="logged in")
+        return render_template('success.html', username=session['username'], text="You have successfully logged in", extend_url="?")
     else:
         session['username'] = None
         return render_template('login.html')
@@ -63,18 +63,25 @@ def register_user():
     username = request.form['username']
     password = request.form['password']
     User.signup_with_username(username, password)
-    return render_template('login_welcome.html', username=session['username'], text="registered")
+    return render_template('success.html', username=session['username'], text="You have successfully registered", extend_url="?")
 
 
 
-@app.route('/home', methods=['POST', 'GET'])  # basically list of classes
-def homescreen_template():
+@app.route('/auth/new_subject', methods=['POST'])
+def new_subject_success():
     user = User.get_user_by_username(session['username'])
     if request.method == 'POST':
         title = request.form['title']
         description = request.form['description']
         new_class = Class(title, description, "active", user.get_username())
         new_class.save_class_to_mongo()
+    return render_template('success.html', username=session['username'], text="Edit successful", extend_url="?")
+
+
+
+@app.route('/home', methods=['POST', 'GET'])  # basically list of classes
+def homescreen_template():
+    user = User.get_user_by_username(session['username'])
     classes = user.get_classes_of_user()
     return render_template('homescreen.html', classes=classes, username=session['username'])
 
@@ -100,6 +107,23 @@ def subject_template(class_id):
     return render_template('view_subject.html', notes=notes, username=session['username'], subject=subject)
 
 
+'''
+@app.route('/home/subject/<string:class_id>/edit', methods=['POST', 'GET'])
+def edit_subject(class_id):
+    render_template()'''
+
+@app.route('/auth/new_note/<class_id>', methods=['POST'])
+def new_note_success(class_id):
+    subject = Class.get_class_by_id(class_id)
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
+        date = request.form['date']
+        due_date = request.form['due-date']
+        new_note = Note(title, content, due_date, class_id, date)
+        new_note.save_note_to_mongo()
+    return render_template('success.html', username=session['username'], text="Edit successful", extend_url="/subject/" + class_id)
+
 
 
 @app.route('/home/subject/newnote/<string:class_id>')  # creating new note inside a class
@@ -110,4 +134,4 @@ def create_new_note(class_id):
 
 # requirement to run our app
 if __name__ == '__main__':
-    app.run(port=4995, debug=True)
+    app.run(port=4990, debug=True)

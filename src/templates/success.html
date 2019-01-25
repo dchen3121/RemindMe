@@ -4,10 +4,10 @@
     <div class="container">
         <h1 style="text-align:center;font:Trebuchet MS;">RemindMe!</h1>
         <hr>
-        <p style="text-align:center;font:Calibri;font-size:14pt">You have successfully {{ text }}.</p>
+        <p style="text-align:center;font:Calibri;font-size:14pt">{{ text }}.</p>
     </div>
     <div class="text-center">
-        <form action="/home">
+        <form action="/home{{ extend_url }}">
             <button type="submit" class="btn btn-secondary" style="font-size:18pt;">Continue to home</button>
         </form>
     </div>

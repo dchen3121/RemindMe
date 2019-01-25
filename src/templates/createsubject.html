@@ -3,14 +3,14 @@
 <div class="outer" style="width:600px;height:400px;">
     <h1 style="text-align:center;font:Trebuchet MS;font-size:18pt;">New Subject</h1>
     <hr>
-    <form id="new-subject-form" action="/home" method="post">
+    <form id="new-subject-form" action="/auth/new_subject" method="post">
         <div class="form-group">
             <label for="title" style="font-size:14pt;">Title</label>
             <input type="text" id="title" name="title" style="width:100%"/>
         </div>
         <div class="form-group">
             <label for="description" style="font-size:14pt;">Description</label>
-            <textarea id="description" class="form-control" name="description" rows="2" maxlength="150"></textarea>
+            <textarea id="description" class="form-control" name="description" rows="2" maxlength="100"></textarea>
         </div>
         <button type="submit" class="btn btn-secondary">Create new subject</button>
     </form>

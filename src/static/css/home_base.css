@@ -4,9 +4,22 @@
 
 .card-subject {
     float:left;
-    width:24%;
-    height:250px;
-    margin-bottom:16px;
-    margin-left:1%;
+    width:260px;
+    height:260px;
+    margin-bottom:24px;
+    margin-left:12px;
+    margin-right:12px;
     background-color:#CCC;
 }
+
+.card-note {
+    float:left;
+    width:340px;
+    height:320px;
+    margin-bottom:24px;
+    margin-left:12px;
+    margin-right:12px;
+    background-color:#EEE;
+}
+
+@media (max-width:994px) {}

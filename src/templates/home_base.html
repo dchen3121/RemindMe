@@ -18,12 +18,15 @@
 </head>
 <body style="background-image:url(../static/images/first_bg.jpg);background-size:cover;">
 
-<nav class="navbar navbar-dark bg-dark" style="margin-bottom:15px;">
+<nav class="navbar navbar-dark bg-dark" style="margin-bottom:15px;position:fixed;width:100%;z-index:10;">
     <a class="navbar-brand" style="color:#CCCCCC">Hello, {{ username }}.</a>
     <form class="form-inline" action="/logout" method="post">
         <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Log Out</button>
     </form>
 </nav>
+<br>
+<br>
+<br>
 
 {% block content %}
 
