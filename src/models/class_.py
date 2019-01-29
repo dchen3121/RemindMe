@@ -71,8 +71,6 @@ class Class(object):
 
 
 
-
-
     # the get methods
     def get_title(self):
         return self.title

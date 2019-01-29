@@ -93,7 +93,7 @@ def create_new_subject():
 
 
 
-@app.route('/home/subject/<string:class_id>', methods=['POST', 'GET'])
+@app.route('/home/<string:class_id>', methods=['POST', 'GET'])
 def subject_template(class_id):
     subject = Class.get_class_by_id(class_id)
     if request.method == 'POST':
@@ -132,6 +132,28 @@ def create_new_note(class_id):
 
 
 
+@app.route('/home/editclass/<string:class_id>') # editing a class
+def edit_class(class_id):
+    subject = Class.get_class_by_id(class_id)
+    return render_template('editsubject.html', username=session['username'], subject=subject)
+
+
+
+@app.route('/auth/edit_subject', methods=['POST'])
+def edit_subject_success():
+    user = User.get_user_by_username(session['username'])
+    old_class_id = request.form['subject-id']
+    old_class = Class.get_class_by_id(old_class_id)
+    old_class.delete_class()
+    if request.method == 'POST':
+        title = request.form['title']
+        description = request.form['description']
+        new_class = Class(title, description, "active", user.get_username())
+        new_class.save_class_to_mongo()
+    return render_template('success.html', username=session['username'], text="Edit successful", extend_url="?")
+
+
+
 # requirement to run our app
 if __name__ == '__main__':
-    app.run(port=4990, debug=True)
+    app.run(port=4991, debug=True)

@@ -1,17 +1,17 @@
-{% extends "home_base.html" %}
+{% extends "subject_base.html" %}
 {% block content %}
 <div class="container-fluid btn-group" role="group" style="margin-bottom:40px;">
     <form id="createnote" action="/home/subject/newnote/{{ subject._id }}" style="margin-right:15px;">
-        <button type="submit" class="btn btn-outline-secondary"> + Create a new note</button>
+        <button type="submit" class="btn btn-outline-light"> + Create a new note</button>
     </form>
     <form id="editsubject" action="/home/subject/editsubject/{{ subject._id }}" style="margin-right:15px;">
-        <button type="submit" class="btn btn-outline-secondary">Edit this subject</button> <!--TODO-->
+        <button type="submit" class="btn btn-outline-light">Edit this subject</button> <!--TODO-->
     </form>
     <form id="back2subject" action="/home" style="margin-right:15px;">
-        <button type="submit" class="btn btn-outline-secondary">Back to home</button>
+        <button type="submit" class="btn btn-outline-light">Back to home</button>
     </form>
 </div>
-<div class="container" style="margin-bottom:30px;">
+<div class="container" style="color:lightgrey;margin-bottom:30px;">
     <h1>{{ subject.title }}</h1>
     <h4>{{ subject.description }}</h4>
 </div>

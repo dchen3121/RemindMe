@@ -10,14 +10,19 @@
     {% if classes|length > 0 %}
         {% for class in classes %}
             <div class="card card-subject">
-                <div class="card-body">
-                    <h5 class="card-title"><a href="/home/subject/{{ class._id }}"
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title"><a href="/home/{{ class._id }}"
                                               style="color:black;text-decoration:none;">{{ class.title }}</a></h5>
-                    <hr>
+                    <hr style="margin-top:0px;margin-left:0;margin-right:0;">
                     <p class="card-text">{{ class.description }}</p>
-                    <form action="/home/subject/{{ class._id }}/edit">
-                        <button class="btn btn-outline-light btn-small">Edit</button>
-                    </form>
+                    <div class="align-self-end mt-auto">
+                        <form action="/home/editclass/{{ class._id }}" style="margin-top:auto;float:left;">
+                            <button class="align-self-end btn btn-outline-light btn-small mt-auto">Edit</button>
+                        </form>
+                        <form action="/home/deleteclass/{{ class._id }}" style="margin-top:auto;margin-left:10px;float:left;">
+                            <button class="align-self-end btn btn-outline-light btn-small mt-auto">Delete</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         {% endfor %}
