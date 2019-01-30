@@ -122,7 +122,7 @@ def new_note_success(class_id):
         due_date = request.form['due-date']
         new_note = Note(title, content, due_date, class_id, date)
         new_note.save_note_to_mongo()
-    return render_template('success.html', username=session['username'], text="Edit successful", extend_url="/subject/" + class_id)
+    return render_template('success.html', username=session['username'], text="Edit successful", extend_url=class_id)
 
 
 
@@ -133,7 +133,7 @@ def create_new_note(class_id):
 
 
 @app.route('/home/editclass/<string:class_id>') # editing a class
-def edit_class(class_id):
+def edit_subject(class_id):
     subject = Class.get_class_by_id(class_id)
     return render_template('editsubject.html', username=session['username'], subject=subject)
 
@@ -144,13 +144,36 @@ def edit_subject_success():
     user = User.get_user_by_username(session['username'])
     old_class_id = request.form['subject-id']
     old_class = Class.get_class_by_id(old_class_id)
-    old_class.delete_class()
-    if request.method == 'POST':
-        title = request.form['title']
-        description = request.form['description']
-        new_class = Class(title, description, "active", user.get_username())
-        new_class.save_class_to_mongo()
+    title = request.form['title']
+    description = request.form['description']
+    new_class = Class(title, description, "active", user.get_username(), _id=old_class_id)
+    old_class.update_class(new_class.json())
     return render_template('success.html', username=session['username'], text="Edit successful", extend_url="?")
+
+
+
+@app.route('/home/<string:class_id>/editnote/<string:note_id>') # editing a class
+def edit_note(class_id, note_id):
+    subject = Class.get_class_by_id(class_id)
+    note = Note.get_note_by_id(note_id)
+    return render_template('editnote.html', username=session['username'], subject=subject, note=note)
+
+
+
+@app.route('/auth/edit_note', methods=['POST'])
+def edit_note_success():
+    user = User.get_user_by_username(session['username'])
+    old_note_id = request.form['note-id']
+    old_note = Note.get_note_by_id(old_note_id)
+    title = request.form['title']
+    date = request.form['date']
+    due_date = request.form['due-date']
+    content = request.form['content']
+    new_note = Note(title=title, due_date=due_date, class_id=old_note.get_class_id(),
+                    content=content, date=date, _id=old_note_id)
+    old_note.update_note(new_note.json())
+    return render_template('success.html', username=session['username'], text="Edit successful",
+                           extend_url="/" + old_note.get_class_id())
 
 
 

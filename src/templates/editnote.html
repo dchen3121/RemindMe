@@ -1,0 +1,31 @@
+{% extends "auth_base.html" %}
+{% block content %}
+<div style="">
+<div class="outer" style="width:600px;display:inline-block">
+    <h1 style="text-align:center;font:Trebuchet MS;font-size:18pt;">Edit Subject</h1>
+    <hr>
+    <form id="new-subject-form" action="/auth/edit_note" method="post">
+        <div class="form-group">
+            <label for="title" style="font-size:14pt;">New Title</label>
+            <input type="text" id="title" name="title" style="width:100%" value="{{ note.title }}"/>
+        </div>
+        <div class="form-group">
+            <label for="date" style="font-size:14pt;">Date Assigned</label>
+            <input type="date" id="date" name="date" style="width:100%" value="{{ note.date }}"/>
+        </div>
+        <div class="form-group">
+            <label for="due-date" style="font-size:14pt;">Due Date</label>
+            <input type="date" id="due-date" name="due-date" style="width:100%" value="{{ note.due_date }}"/>
+        </div>
+        <div class="form-group">
+            <label for="content" style="font-size:14pt;">New Description</label>
+            <textarea id="content" class="form-control" name="content" rows="3" maxlength="200">
+                {{- note.content -}}
+            </textarea>
+        </div>
+        <input type="hidden" id="note-id" name="note-id" value="{{ note._id }}" />
+        <button type="submit" class="btn btn-secondary">Confirm Edit</button>
+    </form>
+</div>
+</div>
+{% endblock %}

@@ -70,6 +70,14 @@ class Class(object):
                         query={'class_id':self.get_id()})
 
 
+    # deleting class in database
+    def update_class(self, updated_class):
+        """Updates the class"""
+        Database.update(collection='classes',
+                        query={'_id': self.get_id()},
+                        update=updated_class)
+
+
 
     # the get methods
     def get_title(self):
