@@ -7,6 +7,7 @@ from src.common.database import Database
 class Note(object):
 
     def __init__(self, title, content, due_date, class_id, date=datetime.datetime.utcnow(), _id=None):
+        """Initializes the note object"""
         self.title = title
         self.content = content
         self.due_date = due_date
@@ -68,7 +69,7 @@ class Note(object):
 
     # deleting note in database
     def update_note(self, updated_note):
-        """Removes the note from database"""
+        """Updates the note from database"""
         Database.update(collection='notes',
                         query={'_id': self.get_id()},
                         update=updated_note)
@@ -77,38 +78,51 @@ class Note(object):
 
     # the get methods
     def get_title(self):
+        """Gets the title of the note object"""
         return self.title
 
     def get_content(self):
+        """Gets the content of the note object"""
         return self.content
 
     def get_due_date(self):
+        """Gets the due_date of the note object"""
         return self.due_date
 
     def get_date(self):
+        """Gets the date of the note object"""
         return self.date
 
     def get_class_id(self):
+        """Gets the class_id of the note object"""
         return self.class_id
 
     def get_id(self):
+        """Gets the _id of the note object"""
         return self._id
+
 
     # the set methods
     def set_title(self, new_title):
+        """Sets the title of the note object"""
         self.title = new_title
 
     def set_content(self, new_content):
+        """Sets the content of the note object"""
         self.content = new_content
 
     def set_due_date(self, new_due_date):
+        """Sets the due_date of the note object"""
         self.due_date = new_due_date
 
     def set_date(self, new_date):
+        """Sets the date entered of the note object"""
         self.date = new_date
 
     def set_class_id(self, new_class_id):
+        """Sets the class_id of the note object"""
         self.class_id = new_class_id
 
     def set__id(self, new__id):
+        """Sets the _id of the note object"""
         self._id = new__id

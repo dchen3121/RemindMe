@@ -5,13 +5,13 @@
         <button type="submit" class="btn btn-outline-light"> + Create a new note</button>
     </form>
     <form id="editsubject" action="/home/editclass/{{ subject._id }}" style="margin-right:15px;">
-        <button type="submit" class="btn btn-outline-light">Edit this subject</button> <!--TODO-->
+        <button type="submit" class="btn btn-outline-light">Edit this subject</button>
     </form>
     <form id="back2subject" action="/home" style="margin-right:15px;">
         <button type="submit" class="btn btn-outline-light">Back to home</button>
     </form>
 </div>
-<div class="container" style="color:lightgrey;margin-bottom:30px;">
+<div class="container" style="color:#F8FFFF;margin-bottom:30px;">
     <h1>{{ subject.title }}</h1>
     <h4>{{ subject.description }}</h4>
 </div>
@@ -19,7 +19,7 @@
     <div class="row h-100 justify-content-center align-items-center">
     {% if notes|length > 0 %}
         {% for note in notes %}
-            <div class="card card-note" style="background-color:#F8FFF;">
+            <div class="card card-note" style="background-color:#FFF;">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">{{ note.title }}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Due Date: {{ note.due_date }}</h6>
